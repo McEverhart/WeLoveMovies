@@ -34,7 +34,7 @@ async function listReviewsByMovie(req, res, next){
 async function read(req, res) {
   const { movieId } = req.params;
   const data = await moviesService.read(movieId);
-  res.json({ data });
+  res.json({ data })
 }
 async function create(req, res) {
     const data = await moviesService.create(req.body.data)
