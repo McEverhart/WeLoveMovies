@@ -46,9 +46,9 @@ function read(movieId) {
         .where({ movie_id: movieId })
         .first();
 }
-function create(review) {
+function create(reviews) {
     return knex("reviews")
-      .insert(review)
+      .insert(reviews)
       .returning(["review_id", "review_title", "review_body"])
       .then(createdRecords => createdRecords[0])
   }

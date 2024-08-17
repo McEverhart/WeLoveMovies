@@ -19,14 +19,16 @@ async function movieExists(req, res, next) {
 
 async function listTheaterByMovie(req, res, next){
   const {movieId} = req.params
-  data = await moviesService.listTheaterByMovie(movieId)
+  const data = await moviesService.listTheaterByMovie(movieId)
   res.json({data})
 }
 
 async function listReviewsByMovie(req, res, next){
-  const {movieId} = req.params
-  data = await moviesService.listReviewsByMovie(movieId)
-  res.json({data})
+  const { movieId } = req.params;
+  console.log("Fetching reviews for movieId:", movieId); // Debugging line
+  const data = await moviesService.listReviewsByMovie(movieId);
+  console.log("Reviews data:", data); // Debugging line
+  res.json({ data });
 }
 
 async function read(req, res) {
@@ -51,14 +53,14 @@ async function create(req, res) {
  }
 
  async function reviewExists(req, res, next) {
-    const { reviewId } = req.params;
-    const review = await service.read(reviewId);
-    if (review) {
-      res.locals.review = review;
-      return next();
-    }
-    return next({ status: 404, message: `Review cannot be found.` });
+  const { reviewId } = req.params;
+  const review = await service.read(reviewId);
+  if (review) {
+    res.locals.review = review;
+    return next();
   }
+  return next({ status: 404, message: `Review cannot be found.` });
+}
  
 
 module.exports = {
