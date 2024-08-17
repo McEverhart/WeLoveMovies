@@ -24,7 +24,7 @@ async function create(req, res) {
     res.locals.review = review
     return next()
   }
-return next({status: 404, message: `Review cannot be found.`})
+  return next({status: 404, message: `Review cannot be found.`})
 }
  
 async function update(req, res) {
